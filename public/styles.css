@@ -27,7 +27,7 @@ button { cursor: pointer; }
   border: 1px solid #ddd9cd; border-radius: 24px; background: #fffefa;
   box-shadow: 0 20px 45px rgb(47 43 34 / 7%);
 }
-.calendar-app { padding: 22px; }
+.calendar-app { padding: 22px; animation: surface-in .5s cubic-bezier(.2,.8,.2,1) both; }
 .calendar-bar { border-bottom: 1px solid #dedbd1; padding-bottom: 18px; }
 .nav { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .nav button, .views button {
@@ -67,7 +67,7 @@ button { cursor: pointer; }
 .day {
   position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 5px; min-width: 0; min-height: 104px;
   overflow: hidden; border: 1px solid #e7e4dc; border-radius: 12px; background: #f9f8f4; padding: 8px 7px;
-  color: #11110f; text-align: left; transition: border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease;
+  color: #11110f; text-align: left; transition: border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease; animation: day-in .34s cubic-bezier(.2,.8,.2,1) var(--day-delay,0ms) both;
 }
 .day:hover { border-color: #aaa497; background: #fffefa; box-shadow: 0 6px 15px rgb(20 20 18 / 8%); transform: translateY(-1px); }
 .day.other { opacity: .5; }
@@ -100,7 +100,8 @@ button { cursor: pointer; }
 .step b { display: block; margin-bottom: 6px; }
 
 dialog { width: min(540px, calc(100% - 28px)); border: 0; border-radius: 20px; padding: 0; color: #11110f; background: #fffefa; box-shadow: 0 24px 80px rgb(0 0 0 / 28%); }
-dialog::backdrop { background: rgb(17 17 15 / 42%); backdrop-filter: blur(3px); }
+dialog[open] { animation: dialog-in .24s cubic-bezier(.2,.8,.2,1) both; }
+dialog::backdrop { background: rgb(17 17 15 / 42%); backdrop-filter: blur(3px); animation: backdrop-in .2s ease both; }
 #event-form { padding: 24px; }
 #event-form h2 { margin: 0 0 18px; font: 700 26px/1 'Space Grotesk', Arial, sans-serif; letter-spacing: -.04em; }
 #event-form label { display: grid; gap: 7px; margin: 12px 0; font-size: 13px; font-weight: 700; }
@@ -111,10 +112,22 @@ dialog::backdrop { background: rgb(17 17 15 / 42%); backdrop-filter: blur(3px); 
 
 .secondary { min-height: 40px; border: 1px solid #ddd9cd; border-radius: 999px; padding: 0 15px; background: #fffefa; color: #11110f; font-weight: 700; }
 #auth-dialog { width: min(500px, calc(100% - 28px)); }
+.day-panel { padding: 25px; }
+.day-panel header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.day-panel h2 { margin: 0; font: 700 26px/1 'Space Grotesk', Arial, sans-serif; letter-spacing: -.04em; }
+.day-summary { margin: 16px 0; color: #766e61; line-height: 1.5; }
+.day-dialog-events { display: grid; gap: 9px; }
+.day-event { display: grid; grid-template-columns: 64px 1fr; gap: 11px; align-items: center; border: 1px solid #e4e1d8; border-left: 3px solid #5b8def; border-radius: 10px; padding: 12px; background: #f9f8f4; animation: item-in .28s cubic-bezier(.2,.8,.2,1) both; }
+.day-event.microsoft { border-left-color: #c66348; }
+.day-event.personal { border-left-color: #5d9271; }
+.day-event time { color: #11110f; font-size: 13px; font-weight: 700; }
+.day-event strong, .day-event span { display: block; }
+.day-event span, .day-empty { margin: 4px 0 0; color: #766e61; font-size: 13px; }
+.day-panel footer { display: flex; justify-content: flex-end; margin-top: 19px; }
 .auth-panel { padding: 25px; }
 .auth-panel header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
 .auth-panel h2 { margin: 0; font: 700 26px/1 'Space Grotesk', Arial, sans-serif; letter-spacing: -.04em; }
-.auth-panel .icon, #event-form .icon { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid #ddd9cd; border-radius: 50%; background: #fffefa; font-size: 22px; }
+.auth-panel .icon, .day-panel .icon, #event-form .icon { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid #ddd9cd; border-radius: 50%; background: #fffefa; font-size: 22px; }
 .auth-intro { margin: 16px 0; color: #766e61; line-height: 1.5; }
 .auth-tabs { display: flex; gap: 8px; margin: 0 0 16px; }
 .auth-tabs button { min-height: 37px; border: 1px solid #ddd9cd; border-radius: 999px; padding: 0 13px; background: #fffefa; color: #11110f; font-weight: 700; }
@@ -126,6 +139,16 @@ dialog::backdrop { background: rgb(17 17 15 / 42%); backdrop-filter: blur(3px); 
 .auth-consent, .auth-message { margin: 0; color: #766e61; font-size: 13px; line-height: 1.45; }
 .auth-consent a { color: inherit; font-weight: 700; }
 .auth-message:not(:empty) { margin-top: 15px; border-radius: 9px; padding: 10px 11px; background: #f3f1ea; }
+
+@keyframes surface-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes day-in { from { opacity: 0; transform: translateY(8px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes dialog-in { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes item-in { from { opacity: 0; transform: translateX(-7px); } to { opacity: 1; transform: translateX(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
 
 @media (max-width: 720px) {
   .app-shell { width: min(100% - 16px, 1180px); padding-top: 18px; }
