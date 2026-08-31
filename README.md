@@ -26,6 +26,8 @@ SUPABASE_URL=https://<project-ref>.supabase.co
 SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
 ```
 
+`NEXT_PUBLIC_SUPABASE_URL` og `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` støttes også, slik at samme Vercel-oppsett kan brukes i frontend-prosjekter.
+
 Bruk bare Supabase sin publishable/anon-nøkkel her – aldri service-role-nøkkelen. Legg også `https://vedoy-calender-ui.vercel.app/` inn under **Authentication → URL Configuration → Redirect URLs** i Supabase. Ved e-postbekreftelse kommer brukeren tilbake til Calendar UI etter bekreftelsen.
 
 Innlogging beskytter opprettelse av nye avtaler i demoen. Permanent lagring av personlige avtaler krever i tillegg en kalenderhendelsestabell med RLS; det er med vilje ikke lagt inn en åpen tabell eller service-nøkkel i nettleseren.
