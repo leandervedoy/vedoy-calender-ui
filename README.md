@@ -30,7 +30,9 @@ SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
 
 Bruk bare Supabase sin publishable/anon-nøkkel her – aldri service-role-nøkkelen. Legg også `https://vedoy-calender-ui.vercel.app/` inn under **Authentication → URL Configuration → Redirect URLs** i Supabase. Ved e-postbekreftelse kommer brukeren tilbake til Calendar UI etter bekreftelsen.
 
-Innlogging beskytter opprettelse av nye avtaler i demoen. Permanent lagring av personlige avtaler krever i tillegg en kalenderhendelsestabell med RLS; det er med vilje ikke lagt inn en åpen tabell eller service-nøkkel i nettleseren.
+Innlogging beskytter opprettelse av nye avtaler i demoen. Personlige avtaler lagres i `public.vedoy_calendar_events`. Tabellen har RLS: en innlogget bruker kan bare lese, opprette, endre og slette rader der `user_id` er deres egen Supabase-bruker. Det finnes ingen service-nøkkel i nettleseren.
+
+Migrasjonen ligger i `supabase/migrations/202609010001_create_vedoy_calendar_events.sql`. Den må brukes i samme Supabase-prosjekt som Vedøy Login.
 
 ## Publisering til GitHub
 
