@@ -15,7 +15,8 @@ button { cursor: pointer; }
 
 .app-shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 72px; }
 .site-head { display: flex; justify-content: flex-end; margin: 0 0 12px; }
-.site-head > div { display: none; }
+.site-head > div:first-child { display: none; }
+.app-actions { display: flex; gap: 9px; }
 .primary, .site-head .primary {
   border: 0; border-radius: 999px; background: #141412; color: #fff; font-weight: 700;
   padding: 12px 18px; box-shadow: 0 6px 14px rgb(15 15 13 / 12%); transition: transform .18s ease, background .18s ease;
@@ -108,10 +109,29 @@ dialog::backdrop { background: rgb(17 17 15 / 42%); backdrop-filter: blur(3px); 
 #event-form menu button { min-height: 40px; border: 1px solid #ddd9cd; border-radius: 999px; padding: 0 15px; background: #fffefa; font-weight: 700; }
 #event-form menu .primary { border-color: #141412; }
 
+.secondary { min-height: 40px; border: 1px solid #ddd9cd; border-radius: 999px; padding: 0 15px; background: #fffefa; color: #11110f; font-weight: 700; }
+#auth-dialog { width: min(500px, calc(100% - 28px)); }
+.auth-panel { padding: 25px; }
+.auth-panel header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.auth-panel h2 { margin: 0; font: 700 26px/1 'Space Grotesk', Arial, sans-serif; letter-spacing: -.04em; }
+.auth-panel .icon, #event-form .icon { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid #ddd9cd; border-radius: 50%; background: #fffefa; font-size: 22px; }
+.auth-intro { margin: 16px 0; color: #766e61; line-height: 1.5; }
+.auth-tabs { display: flex; gap: 8px; margin: 0 0 16px; }
+.auth-tabs button { min-height: 37px; border: 1px solid #ddd9cd; border-radius: 999px; padding: 0 13px; background: #fffefa; color: #11110f; font-weight: 700; }
+.auth-tabs button.active { border-color: #141412; background: #141412; color: #fff; }
+#auth-form { display: grid; gap: 12px; }
+#auth-form label { display: grid; gap: 7px; font-size: 13px; font-weight: 700; }
+#auth-form input { min-height: 44px; border: 1px solid #dcd8cd; border-radius: 9px; padding: 0 11px; background: #fffefa; }
+#auth-form .primary { justify-self: start; margin-top: 4px; }
+.auth-consent, .auth-message { margin: 0; color: #766e61; font-size: 13px; line-height: 1.45; }
+.auth-consent a { color: inherit; font-weight: 700; }
+.auth-message:not(:empty) { margin-top: 15px; border-radius: 9px; padding: 10px 11px; background: #f3f1ea; }
+
 @media (max-width: 720px) {
   .app-shell { width: min(100% - 16px, 1180px); padding-top: 18px; }
   .calendar-app { padding: 14px; border-radius: 20px; }
   .site-head { margin-bottom: 9px; }
+  .app-actions { gap: 7px; }
   .nav { gap: 7px; }
   .nav button, .views button { min-height: 37px; padding: 0 12px; font-size: 13px; }
   #prev::after, #next::after { font-size: 13px; }

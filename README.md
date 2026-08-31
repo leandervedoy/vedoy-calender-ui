@@ -15,6 +15,21 @@ Use `createMeetingForm` to collect meeting details, then add the returned event 
 
 `vedoy-calender-ui` er det visuelle laget: ferdig CSS, kalenderliste og møteform med deltakere, videolenke og påminnelsesvalg. Dette lar utviklere bruke sin egen designløsning med kjernen, eller installere UI-pakken for å komme raskt i gang.
 
+## Vedøy Login i demoen
+
+Den publiserte demoen kan bruke samme e-postkontoer som **Vedøy Login** via Supabase Auth. Innloggingsvinduet lar brukeren logge inn, registrere en konto og logge ut. Passord håndteres av Supabase Auth og sendes aldri til dette Git-repositoryet.
+
+Legg disse miljøvariablene inn i Vercel for `vedoy-calender-ui`:
+
+```text
+SUPABASE_URL=https://<project-ref>.supabase.co
+SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
+```
+
+Bruk bare Supabase sin publishable/anon-nøkkel her – aldri service-role-nøkkelen. Legg også `https://vedoy-calender-ui.vercel.app/` inn under **Authentication → URL Configuration → Redirect URLs** i Supabase. Ved e-postbekreftelse kommer brukeren tilbake til Calendar UI etter bekreftelsen.
+
+Innlogging beskytter opprettelse av nye avtaler i demoen. Permanent lagring av personlige avtaler krever i tillegg en kalenderhendelsestabell med RLS; det er med vilje ikke lagt inn en åpen tabell eller service-nøkkel i nettleseren.
+
 ## Publisering til GitHub
 
 Pakken skal ligge i et eget repository: `https://github.com/leandervedoy/vedoy-calender-ui`.
