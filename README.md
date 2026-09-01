@@ -1,19 +1,19 @@
 # vedoy-calender-ui
 
-Framework-free UI for `vedoy-calender`: a rendered event list, meeting form, attendees, video links and reminder selection.
+Framework-free UI for `vedoy-calender`: en gjengivbar kalenderliste og møteform som er kompatibel med `CalendarEvent` i kalenderkjernen.
 
 ```js
 import "vedoy-calender-ui/styles.css";
 import { createCalendarView, createMeetingForm } from "vedoy-calender-ui";
 ```
 
-Use `createMeetingForm` to collect meeting details, then add the returned event to a `VedoyCalendar` instance from `vedoy-calender`.
+Use `createMeetingForm` to collect meeting details, then add the returned event to a `VedoyCalendar` instance from `vedoy-calender`. UI-et støtter tittel, start/slutt, sted, deltakere, videolenke, påminnelse og gjentakelse.
 
 ## Hvorfor egen UI-pakke?
 
 `vedoy-calender` er kjernelogikken: hendelser, filtrering, sammenslåing og ICS-eksport. Den inneholder ingen CSS eller skjermkomponenter.
 
-`vedoy-calender-ui` er det visuelle laget: ferdig CSS, kalenderliste og møteform med deltakere, videolenke og påminnelsesvalg. Dette lar utviklere bruke sin egen designløsning med kjernen, eller installere UI-pakken for å komme raskt i gang.
+`vedoy-calender-ui` er det visuelle laget: ferdig CSS, kalenderliste og møteform. Den returnerer en `CalendarUiEvent` med samme avtalefelter som `CalendarEvent`, slik at resultatet kan sendes direkte til kalenderkjernen. Dette lar utviklere bruke sin egen designløsning med kjernen, eller installere UI-pakken for å komme raskt i gang.
 
 ## Vedøy Login i demoen
 

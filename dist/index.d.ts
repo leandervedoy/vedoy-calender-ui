@@ -3,10 +3,15 @@ export type CalendarUiEvent = {
     title: string;
     startsAt: string;
     endsAt: string;
-    source?: string;
+    notes?: string;
+    location?: string;
     attendees?: string[];
-    reminderMinutes?: number;
     meetingUrl?: string;
+    reminderMinutes?: number;
+    recurrence?: "none" | "daily" | "weekly" | "monthly" | "yearly";
+    source?: "vedoy" | "google" | "microsoft" | "apple" | "manual";
+    color?: string;
+    allDay?: boolean;
 };
 export declare function createCalendarView(events: CalendarUiEvent[]): HTMLElement;
 export declare function createMeetingForm(onSave: (event: CalendarUiEvent) => void): HTMLFormElement;
