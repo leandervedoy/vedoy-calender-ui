@@ -80,10 +80,21 @@ button { cursor: pointer; }
 .event-dot.google { background: #e3ecff; color: #1d4d9c; }
 .event-dot.microsoft { background: #f9e6df; color: #a63f22; }
 
-.detail { margin-top: 22px; padding: 22px; }
-.detail > div { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; }
-.detail h3 { margin: 0; font: 700 20px/1.1 'Space Grotesk', Arial, sans-serif; letter-spacing: -.03em; }
-.detail p { margin: 7px 0 0; color: #766e61; }
+.detail { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, .8fr); align-items: center; gap: 28px; margin-top: 22px; padding: 28px 30px; }
+.detail > div { min-width: 0; }
+.detail .eyebrow { margin: 0 0 8px; color: #766e61; font-size: 12px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.detail h2 { margin: 0; font: 700 clamp(24px, 3vw, 34px)/1.05 'Space Grotesk', Arial, sans-serif; letter-spacing: -.045em; text-transform: capitalize; }
+.detail p { max-width: 42ch; margin: 12px 0 0; color: #766e61; font-size: 16px; line-height: 1.45; }
+.detail-events { display: grid; gap: 10px; }
+.empty-action { width: 100%; min-height: 46px; border: 1px solid #141412; border-radius: 12px; padding: 0 16px; background: #141412; color: #fff; font-weight: 700; transition: transform .18s ease, background .18s ease, box-shadow .18s ease; }
+.empty-action:hover { background: #2c2c27; box-shadow: 0 8px 18px rgb(20 20 18 / 14%); transform: translateY(-1px); }
+.event-card { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 12px; align-items: center; border: 1px solid #e4e1d8; border-left: 4px solid #5b8def; border-radius: 12px; padding: 12px; background: #f9f8f4; }
+.event-card.personal { border-left-color: #5d9271; }
+.event-card.microsoft { border-left-color: #c66348; }
+.event-card time { font-size: 13px; font-weight: 700; }
+.event-card strong, .event-card span { display: block; }
+.event-card span { margin-top: 4px; color: #766e61; font-size: 13px; }
+.event-card a { color: #11110f; font-size: 13px; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .detail ul { margin: 17px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
 .detail li { border-left: 3px solid #5b8def; padding: 8px 10px; background: #f8f8f4; border-radius: 0 8px 8px 0; font-size: 14px; }
 .detail.empty { color: #766e61; }
@@ -92,9 +103,13 @@ button { cursor: pointer; }
 .agenda h3 { margin: 0 0 8px; }
 .agenda p { margin: 0; color: #766e61; }
 
-.explainer { margin-top: 22px; padding: 30px; }
-.explainer h2 { margin: 0 0 10px; font: 700 28px/1.05 'Space Grotesk', Arial, sans-serif; letter-spacing: -.04em; }
+.explainer { display: grid; grid-template-columns: minmax(0, 1.15fr) repeat(2, minmax(180px, .65fr)); gap: 14px; margin-top: 22px; padding: 30px; }
+.explainer h2 { max-width: 16ch; margin: 0; font: 700 28px/1.05 'Space Grotesk', Arial, sans-serif; letter-spacing: -.04em; }
+.explainer .eyebrow { margin: 0 0 10px; color: #766e61; font-size: 12px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
 .explainer p { max-width: 65ch; margin: 0; color: #766e61; line-height: 1.55; }
+.layer { display: grid; align-content: start; gap: 9px; border: 1px solid #e4e1d8; border-radius: 16px; padding: 18px; background: #f9f8f4; }
+.layer strong { font: 700 16px/1.2 'Space Grotesk', Arial, sans-serif; letter-spacing: -.02em; }
+.layer span { color: #766e61; font-size: 14px; line-height: 1.45; }
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 22px; }
 .step { border: 1px solid #e4e1d8; border-radius: 14px; padding: 16px; background: #f9f8f4; }
 .step b { display: block; margin-bottom: 6px; }
@@ -168,6 +183,11 @@ dialog::backdrop { background: rgb(17 17 15 / 42%); backdrop-filter: blur(3px); 
   .event-dot { padding: 4px; font-size: 9px; }
   .weekdays span { font-size: 11px; }
   .steps { grid-template-columns: 1fr; }
+  .detail { grid-template-columns: 1fr; gap: 18px; padding: 23px; }
+  .detail h2 { font-size: 27px; }
+  .explainer { grid-template-columns: 1fr; padding: 23px; }
+  .explainer h2 { max-width: 21ch; font-size: 26px; }
+  .layer { padding: 16px; }
 }
 
 @media (max-width: 430px) {
